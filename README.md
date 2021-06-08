@@ -1,2 +1,2 @@
 # shiny-spoon
-pentest kit for my final yr cybersecurity project
+pentest kit using react and rust
