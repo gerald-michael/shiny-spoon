@@ -1,2 +1,0 @@
-export const THEME_START = "THEME_START";
-export const THEME_SUCCESS = "THEME_SUCCESS";
