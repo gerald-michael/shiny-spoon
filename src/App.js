@@ -1,8 +1,8 @@
 import { SideBarAndNavBar, Footer, Steganography, FileAnalysis, Cryptography, IpAnalysis } from './components/index'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-const useStyles = makeStyles((theme: Theme) =>
+import CssBaseline from '@material-ui/core/CssBaseline'
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       display: 'flex',

@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow} = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
 function createWindow() {
@@ -6,7 +6,10 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            contextIsolation: false,
+            webSecurity: false
         }
     })
     mainWindow.loadURL(
