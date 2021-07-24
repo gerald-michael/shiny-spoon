@@ -1,4 +1,4 @@
-const { app, BrowserWindow} = require('electron')
+const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
 function createWindow() {
@@ -7,9 +7,9 @@ function createWindow() {
         height: 600,
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true,
-            contextIsolation: false,
-            webSecurity: false
+            contextIsolation: true,
+            webSecurity: false,
+            preload: path.join(__dirname, 'preload.ts')
         }
     })
     mainWindow.loadURL(
@@ -27,4 +27,24 @@ app.whenReady().then(() => {
 })
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
+})
+
+// ipc
+ipcMain.on("getFile", function (event, data) {
+    dialog.showOpenDialog({
+        title: "Choose file",
+        properties: ['openFile'],
+        filters: data
+    }).then(result => {
+        event.returnValue = result;
+    })
+})
+
+ipcMain.on("saveFile", function (event, data) {
+    let result = dialog.showSaveDialogSync({
+        title: "Save File",
+        filters: data,
+        properties: ["createDirectory", "showOverwriteConfirmation"]
+    })
+    event.returnValue = result
 })

@@ -1,5 +1,6 @@
 declare global {
   interface Window {
-    require: any;
+    api: any;
   }
 }
+export {}

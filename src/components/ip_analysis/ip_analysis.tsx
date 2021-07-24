@@ -1,37 +1,22 @@
-import { Typography } from "@material-ui/core";
-import { Paper, Grid } from "@material-ui/core";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            flexGrow: 1,
-        },
-        paper: {
-            padding: theme.spacing(2),
-            textAlign: 'center',
-            color: theme.palette.text.secondary,
-        },
-    }),
-);
+import { TextField, Typography } from "@material-ui/core";
+import React, { useState } from "react";
+import { useEffect } from "react";
+// const shinny_spoon = require('../../../../shiny-spoon-service/')
 export default function IpAnalysis() {
-    const classes = useStyles();
+    const [value, setValue] = useState("")
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        setValue(e.target.value)
+    }
+    useEffect(() => {
+
+    }, [value]);
+    // console.log(shinny_spoon)
+    // const {password_strength_estimator} = shinny_spoon
     return (
         <>
-            <Paper>
-                <Typography>Ip Analyis</Typography>
-            </Paper>
-            <div></div>
-            <div className={classes.root}>
-                <Grid container spacing={3}>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>xs=6</Paper>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>xs=6</Paper>
-                    </Grid>
-                </Grid>
-            </div>
+            <Typography>Ip Analysis</Typography>
+            <TextField id="outlined-basic" label="Enter Password" variant="outlined" value={value} onChange={handleChange} />
         </>
     )
 }
