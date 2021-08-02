@@ -8,3 +8,4 @@ export { default as IpAnalysis } from './ip_analysis/ip_analysis'
 export { default as PasswordAnalysis } from './password_analysis/password'
 export { default as Cracker } from './cracker/cracker'
 export { default as Settings } from "./settings/settings"
+export { default as HashIdentify} from "./hash_identification/hash_identify"

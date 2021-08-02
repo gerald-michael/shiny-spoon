@@ -65,7 +65,7 @@ export default function PasswordAnalysis() {
                             <Typography>
                                 Password analysis
                             </Typography>
-                            <TextField id="password" label="password" variant="outlined" value={password} required onChange={handleChange} />
+                            <TextField id="password" type="password" label="password" variant="outlined" value={password} required onChange={handleChange} />
                             <Typography>
                                 Additional infomation, eg DOB, name, username
                             </Typography>

@@ -8,8 +8,8 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
-            webSecurity: false,
-            preload: path.join(__dirname, 'preload.ts')
+            webSecurity: true,
+            preload: path.join(__dirname, 'preload.js')
         }
     })
     mainWindow.loadURL(

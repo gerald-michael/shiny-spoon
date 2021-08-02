@@ -3,7 +3,7 @@ import * as actionTypes from '../actionTypes/theme'
 import { ITheme, IThemeAction } from '../models/theme'
 export const initialState: ITheme = {
     loading: false,
-    theme: null,
+    mui_theme: null,
     error: null,
 }
 
@@ -20,7 +20,7 @@ const themeSuccess = (state: ITheme, action: IThemeAction) => {
         state,
         {
             loading: false,
-            theme: action.theme,
+            theme: action.mui_theme,
         }
     );
 }

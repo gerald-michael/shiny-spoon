@@ -20,8 +20,11 @@ import { useHistory } from "react-router-dom"
 import { FaNetworkWired } from "react-icons/fa";
 import { GiStegosaurusScales } from "react-icons/gi";
 import { FcDataEncryption } from "react-icons/fc";
-import { AiOutlineFileSearch } from "react-icons/ai";
-
+import { AiOutlineFileSearch, AiOutlineScan } from "react-icons/ai";
+import { ThemeContext } from '../../store/context/theme';
+import BrightnessLowIcon from '@material-ui/icons/BrightnessLow';
+import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
+import { Tooltip } from '@material-ui/core'
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -103,6 +106,17 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const { mui_theme, setTheme } = React.useContext(ThemeContext);
+  const [darkMode, setDarkMode] = React.useState(mui_theme.theme === "dark");
+  const setDark = () => {
+    setDarkMode(!darkMode);
+
+    if (darkMode) {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+  }
   return (
     <>
       <AppBar position="fixed" open={open}>
@@ -119,9 +133,14 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Shinny Spoon
           </Typography>
+          <Tooltip title="light/dark">
+            <IconButton color="inherit" onClick={setDark}>
+              {mui_theme.theme === "dark" ? (<BrightnessLowIcon />) : (<BrightnessHighIcon />)}
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -132,48 +151,54 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem button onClick={()=>{history.replace('/')}}>
+          <ListItem button onClick={() => { history.replace('/') }}>
             <ListItemIcon>
-              <FcDataEncryption/>
+              <FcDataEncryption />
             </ListItemIcon>
             <ListItemText primary="Encode and Decode" />
           </ListItem>
-          <ListItem button onClick={()=>history.replace('/steg')}>
+          <ListItem button onClick={() => history.replace('/hash')}>
             <ListItemIcon>
-              <GiStegosaurusScales/>
+              <AiOutlineScan />
+            </ListItemIcon>
+            <ListItemText primary="Hash Identify" />
+          </ListItem>
+          <ListItem button onClick={() => history.replace('/steg')}>
+            <ListItemIcon>
+              <GiStegosaurusScales />
             </ListItemIcon>
             <ListItemText primary="Steganography" />
           </ListItem>
-          <ListItem button onClick={()=>{history.replace('/passwd')}}>
+          <ListItem button onClick={() => { history.replace('/passwd') }}>
             <ListItemIcon>
-              <PasswordIcon/>
+              <PasswordIcon />
             </ListItemIcon>
             <ListItemText primary="Password Analysis" />
           </ListItem>
-          <ListItem button onClick={()=>{history.replace('/file')}}>
+          <ListItem button onClick={() => { history.replace('/file') }}>
             <ListItemIcon>
-              <AiOutlineFileSearch/>
+              <AiOutlineFileSearch />
             </ListItemIcon>
             <ListItemText primary="File Analysis" />
           </ListItem>
-          <ListItem button onClick={()=>{history.replace('/ip')}}>
+          <ListItem button onClick={() => { history.replace('/ip') }}>
             <ListItemIcon>
-              <FaNetworkWired/>
+              <FaNetworkWired />
             </ListItemIcon>
             <ListItemText primary="Ip Analysis" />
           </ListItem>
-          <ListItem button onClick={()=>{history.replace('/cracker')}}>
+          <ListItem button onClick={() => { history.replace('/cracker') }}>
             <ListItemIcon>
-              <GiVirus/>
+              <GiVirus />
             </ListItemIcon>
             <ListItemText primary="Cracker" />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button onClick={()=>{history.replace('/settings')}}>
+          <ListItem button onClick={() => { history.replace('/settings') }}>
             <ListItemIcon>
-              <SettingsIcon/>
+              <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Settings" />
           </ListItem>

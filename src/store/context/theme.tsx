@@ -4,18 +4,18 @@ import * as actionTypes from '../actionTypes/theme'
 import { ITheme, IThemeAction } from '../models/theme'
 export const ThemeContext = createContext<ITheme | any>(initialState);
 const ThemeContextProvider = (props: any): JSX.Element => {
-    const [theme, themeDispatch] = useReducer(reducer, initialState)
+    const [mui_theme, themeDispatch] = useReducer(reducer, initialState)
     const themeStart = (): IThemeAction => {
         return {
             type: actionTypes.THEME_START,
-            theme: null,
+            mui_theme: null,
             error: null,
         }
     }
     const themeSuccess = (theme: string): IThemeAction => {
         return {
             type: actionTypes.THEME_SUCCESS,
-            theme: theme,
+            mui_theme: theme,
             error: null,
         }
     }
@@ -34,7 +34,7 @@ const ThemeContextProvider = (props: any): JSX.Element => {
         }
     }
     return (
-        <ThemeContext.Provider value={{ theme, setTheme, themeCheckState }}>
+        <ThemeContext.Provider value={{ mui_theme, setTheme, themeCheckState }}>
             {props.children}
         </ThemeContext.Provider>
     );

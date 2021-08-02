@@ -21,16 +21,15 @@ export default function WhiteSpaceSteg() {
         }
     }
     const handleDecode = () => {
-        if (inputState.carier.length === 0 || inputState.payload.length === 0) {
-
-        } else {
+        if (inputState.output.length !== 0) {
             let result = window.api.shiny_spoon.white_space_steg_reveal(inputState.output)
-            // setInputState({ ...inputState, output: result })
-            console.log(result)
+            setInputState({ ...inputState, payload: result })
         }
     }
     const handleEncode = () => {
         if (inputState.carier.length === 0 || inputState.payload.length === 0) {
+
+        } else if (inputState.carier.length < inputState.payload.length) {
 
         } else {
             let result = window.api.shiny_spoon.white_space_steg_hide(inputState.payload, inputState.carier)
